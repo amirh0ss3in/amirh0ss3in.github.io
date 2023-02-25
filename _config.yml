@@ -3,7 +3,7 @@ title: Amirhossein Rezaei
 bio: BSc. in Physics
 
 # twitter summary info
-description: 
+description: Amirhossein Rezaei , Physics, Deep Learning, Machine Learning, Image Processing, Python, Shahid Beheshti University 
 
 google-site-verification: googlee08ec0e889e6e708.html
 
@@ -25,7 +25,7 @@ resume-url: https://drive.google.com/file/d/1s5PsfnRj5s4nk9OqzkHqcvzC2DG5N91W/vi
 url: https://amirh0ss3in.github.io/
 # your url: https://USERNAME.github.io
 
-permalink: /:title/
+permalink: /:amirh0ss3in.github.io/
 
 # To enable google analytics, supply your token below
 # analytics-google: 'UA-MYANALYTICS'
@@ -44,7 +44,7 @@ github: amirh0ss3in
 email: rezaeeamirhosein@gmail.com
 
 authors:
-  johndoe:
+    AmirhosseinRezaei:
     name: Amirhossein Rezaei
     bio: BSc. in Physics
     external-image: false
