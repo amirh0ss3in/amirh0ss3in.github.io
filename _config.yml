@@ -9,7 +9,7 @@ google-site-verification: googlee08ec0e889e6e708.html
 
 # if it's an external image, update below for true
 # better with square images
-external-image: false
+external-image: true
 picture: assets/images/profile.jpg
 
 # your site color theme, true for dark theme, 
