@@ -123,7 +123,7 @@ compress_html:
 exclude:
   [
     "README.md",
-    "Gemfile",
+#     "Gemfile",
     "Gemfile.lock",
     "FAQ.md",
     "vendor",
