@@ -105,12 +105,14 @@ defaults:
       # can be overridden in the front matter for a specific post
       hidden: false
 
+url: https://amirh0ss3in.github.io/
 plugins:
   - jekyll-seo-tag
   - jekyll-gist
   - jekyll-feed
   - jemoji
   - jekyll-paginate-v2
+  - jekyll-sitemap
 
 compress_html:
   ignore:
