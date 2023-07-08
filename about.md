@@ -13,6 +13,8 @@ layout: page
 
 	
 <p>My current projects involve developing deep learning procedures for medical imaging, Classification of Intracranial Field Potentials in Human Visual Cortex via Convolutional Deep Neural Network and seismic damage assessment of offshore platforms using 1D-CNNs. I possess skills in programming languages such as Python, C, C++, MATLAB, and Mathematica, and am proficient in various tools and technologies such as TensorFlow, Keras, Scikit, and Git. My language proficiency includes Persian (native), English, Azerbaijani, and Turkish.</p>
+
+<p>Transcript of Academic Record.htm</p>
 <!-- <p>TODO</p> -->
 
 <!-- <h2>Skills</h2> -->
