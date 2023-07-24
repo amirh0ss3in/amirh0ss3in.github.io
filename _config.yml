@@ -1,4 +1,4 @@
-# main text of home
+e# main text of home
 title: Amirhossein Rezaei
 bio: BSc. in Physics
 
@@ -20,7 +20,7 @@ dark-theme: auto
 # and specify source (external or local).
 resume: true
 resume-external: true
-resume-url: main.pdf
+resume-url: resume.pdf
 
 url: https://amirh0ss3in.github.io/
 # your url: https://USERNAME.github.io
