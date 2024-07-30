@@ -3,18 +3,30 @@ title: About
 layout: page
 ---
 ![Profile Image]({% if site.external-image %}{{ site.picture }}{% else %}{{ site.url }}/{{ site.picture }}{% endif %})
-<p>Hello, I am Amirhossein Rezaei, a physics undergraduate student at Shahid Beheshti University. My research interests include numerical simulations, complex systems, biophysics and artificial intelligence, and I have published research papers on topics such as hypermagnetic fields, COVID-19 epidemic prediction, and Gödel's incompleteness theorem.  You can find my research papers on my Google Scholar page here: <a href="https://scholar.google.com/citations?user=xBOX2bIAAAAJ&hl=en">Google Scholar</a> and my ResearchGate page here: <a href="https://www.researchgate.net/profile/Amirhossein-Rezaei-2">ResearchGate</a>. As a teaching assistant for several courses, I have gained experience in communicating complex concepts effectively.</p>
 
-	
-<p>I am also an active member of the Physics Student Association, where I coordinate events and seminars featuring guest speakers from academia and industry. You can find more information about my involvement with the association on <a href="https://sbuphysics.com/">SBU Physics Website</a>, <a href="https://t.me/sbu_physics">Telegram Channel</a> and its <a href="http://instagram.com/sbu.physics">Instagram page</a>.</p>
+# About Me
 
-	
-<p>In addition, I have developed several projects, including Optimizing the Ising model in Python, a repository of Complex Systems ideas and codes, a comprehensive database of pollen grains, and a package for generating a 3D representation of the brain. You can find these projects on my GitHub page here: <a href="https://github.com/amirh0ss3in">GitHub</a>.</p>
+I'm Amirhossein Rezaei, a recent Physics graduate from Shahid Beheshti University. My peers often refer to me as the "adjustable wrench" due to my adaptability and eagerness to tackle diverse challenges in physics and computation.
 
-	
-<p>My current projects involve developing deep learning procedures for medical imaging, Classification of Intracranial Field Potentials in Human Visual Cortex via Convolutional Deep Neural Network and seismic damage assessment of offshore platforms using 1D-CNNs. I possess skills in programming languages such as Python, C, C++, MATLAB, and Mathematica, and am proficient in various tools and technologies such as TensorFlow, Keras, Scikit, and Git. My language proficiency includes Persian (native), English, Azerbaijani, and Turkish.</p>
+## Research Journey
 
-<p><a href="https://amirh0ss3in.github.io/Transcript of Academic Record.htm"> Transcript of academic record </a> </p>
+My research experience began in my second year, collaborating with Dr. Siamak Sadat Gousheh on hypermagnetic fields and matter-antimatter asymmetry. Our work, published in Physical Review D, introduced me to the power of numerical methods in theoretical physics.
+
+In my third year, I led a project on "A Deep Learning Framework for Collapse Prediction of Structures Using 1D-CNN for Earthquake Time Series Classification with joint Bayesian hyperparameter optimization and Neural Architecture Search." This ongoing work, currently under review, reflects my interest in applying machine learning to complex physical systems.
+
+## Current Focus
+
+My academic path led me to quantum information and computation in my fourth year. I'm currently working with Dr. S.M. Halataei in the Quantum Information and Computation Group at Shahid Beheshti University. Our research on fully connected Ising Hamiltonians has potential applications in optimization problems like Quadratic Unconstrained Binary Optimization (QUBO), with implications for solving NP-Hard problems such as k-SAT and the Traveling Salesman Problem.
+
+## Approach and Skills
+
+I strive to approach problems from multiple perspectives, leveraging my background in physics and computational skills. My goal is to contribute meaningfully to the intersection of physics and computation, focusing on practical applications and real-world impact.
+
+I'm committed to continuous learning and growth, always ready to explore new concepts and technologies. Whether it's quantum mechanics, machine learning, or complex system optimization, I embrace the challenge of expanding my knowledge and skills.
+
+Feel free to explore my projects and publications for more insight into my work and interests. I welcome feedback and collaboration opportunities.
+
+
 <!-- <p>TODO</p> -->
 
 <!-- <h2>Skills</h2> -->
