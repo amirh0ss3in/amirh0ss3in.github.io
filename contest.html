@@ -1,86 +1,167 @@
 ---
 layout: page
-title: Contest Submission
-permalink: /contest/
+title: Contest Entry
+permalink: /contest.html
 ---
 
-<div class="form-container">
-  <h2>Enter the Contest</h2>
-  <p>Submit your entry below. We will contact the winner via email.</p>
+<div class="post-content">
 
-  <form id="contest-form">
+  <h1>Contest Entry Form</h1>
+  <p>Fill out the form below to enter our contest. Good luck!</p>
+
+  <!-- The Form -->
+  <form id="contest-form" name="contest-form">
+    
     <div class="form-group">
       <label for="name">Full Name</label>
       <input type="text" id="name" name="name" required>
     </div>
+    
     <div class="form-group">
       <label for="email">Email Address</label>
       <input type="email" id="email" name="email" required>
     </div>
+    
     <div class="form-group">
-      <label for="answer">Your Short Answer (max 500 characters)</label>
+      <label for="answer">Short Answer (max 500 characters)</label>
       <textarea id="answer" name="answer" rows="6" maxlength="500" required></textarea>
     </div>
+
     <button type="submit" id="submit-button">Submit Entry</button>
+  
   </form>
 
-  <div id="status-container" style="margin-top: 20px;"></div>
+  <!-- Status Message Div -->
+  <div id="status-message"></div>
 
 </div>
 
+<!-- Basic styling to ensure form elements are well-spaced. -->
+<!-- This will likely be complemented by your theme's main CSS. -->
 <style>
-/* Same minimal styling as before */
-.form-group{margin-bottom:1.5rem}label{display:block;margin-bottom:.5rem;font-weight:700}input,textarea{width:100%;padding:.75rem;border:1px solid #ccc;border-radius:4px;font-size:1rem;box-sizing:border-box}body.dark-theme input,body.dark-theme textarea{background-color:#333;color:#eee;border-color:#555}button{display:inline-block;padding:.75rem 1.5rem;border:none;background-color:#3498db;color:#fff;font-size:1rem;font-weight:700;border-radius:4px;cursor:pointer;transition:background-color .2s ease-in-out}button:hover{background-color:#2980b9}button:disabled{background-color:#a9a9a9;cursor:not-allowed}
-#status-container div{padding:20px;border-radius:4px;word-break:break-word}
-#status-container .success{background-color:#d4edda;color:#155724;border:1px solid #c3e6cb}
-#status-container .error{background-color:#f8d7da;color:#721c24;border:1px solid #f5c6cb}
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+  }
+  input[type="text"],
+  input[type="email"],
+  textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Important for responsive layouts */
+  }
+  button {
+    cursor: pointer;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 4px;
+    /* These colors are common placeholders; the Indigo theme will likely override them. */
+    background-color: #337ab7; 
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+  button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+  #status-message {
+    margin-top: 1rem;
+    padding: 10px;
+    border-radius: 4px;
+    display: none; /* Hidden by default */
+  }
+  #status-message.success {
+    display: block;
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+  }
+  #status-message.error {
+    display: block;
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+  }
 </style>
 
 <script>
+  // Wait for the DOM to be fully loaded before running the script
   document.addEventListener("DOMContentLoaded", function() {
-    // PASTE YOUR NEW WEB APP URL FROM STEP 2 HERE
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwtgExblMPEFUiXQACHP2o3uwFQMKUA6y7sXTcEuFVe6e33O4ZK8eCUyqvSAqtMXYA-/exec'; 
+    
+    // --- Step 1: SET YOUR WEB APP URL ---
+    // This is the URL you get after deploying the Google Apps Script
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzDEuwc6W9umS-qE1pB9Ow-5yt24HPHDL2xM6LG7J_XYPkV-kneVtuad1eZ3uYu0KiD/exec'; 
 
+    // Get the form and status message elements from the DOM
     const form = document.getElementById('contest-form');
+    const statusMessage = document.getElementById('status-message');
     const submitButton = document.getElementById('submit-button');
-    const statusContainer = document.getElementById('status-container');
-
+    
+    // --- Step 2: Add event listener for form submission ---
     form.addEventListener('submit', function(e) {
-      e.preventDefault();
       
+      // Prevent the default form submission behavior
+      e.preventDefault(); 
+      
+      // --- Client-side validation check ---
+      if (!form.checkValidity()) {
+        console.warn('Form validation failed.');
+        statusMessage.textContent = 'Please fill out all required fields correctly.';
+        statusMessage.className = 'error';
+        return; // Stop the function if form is invalid
+      }
+
+      // Disable the submit button to prevent multiple submissions
       submitButton.disabled = true;
       submitButton.textContent = 'Submitting...';
-      statusContainer.innerHTML = '';
+      
+      // Show a "processing" message
+      statusMessage.textContent = 'Sending your entry... please wait.';
+      statusMessage.className = 'success';
 
+      // Use the Fetch API to send data
+      // FormData will automatically collect all form field data
       fetch(SCRIPT_URL, {
         method: 'POST',
         body: new FormData(form),
-        mode: 'cors', // Explicitly set mode for clarity
       })
       .then(response => {
-        // This block checks for network-level issues before parsing JSON
-        if (response.redirected) {
-          throw new Error('Redirect Error: The request was redirected. Please check that the Apps Script deployment permission for "Who has access" is set to "Anyone".');
-        }
+        // Check if the response was successful
         if (!response.ok) {
-          throw new Error(`Network Error: The server responded with status ${response.status} (${response.statusText}).`);
+           // If the server response is not ok, throw an error to be caught by the .catch block
+           return response.json().then(errorInfo => Promise.reject(errorInfo));
         }
-        return response.json(); // Attempt to parse the body as JSON
+        return response.json();
       })
       .then(data => {
-        // This block handles the JSON response from your script
+        // --- Handle SUCCESS response from Google Apps Script ---
+        console.log('Success:', data);
         if (data.result === 'success') {
-          form.style.display = 'none';
-          statusContainer.innerHTML = `<div class="success"><h3>Success!</h3><p>Your entry has been received. Thank you!</p></div>`;
+          statusMessage.textContent = 'Success! Your entry has been recorded.';
+          statusMessage.className = 'success';
+          form.reset(); // Clear the form fields
         } else {
-          // 'data.error' comes directly from your Apps Script 'catch' block
-          throw new Error(`Server-Side Error: ${data.error || 'An unknown error occurred.'}`);
+          // Handle cases where the script runs but reports an application-level error
+          throw new Error(data.message || 'An unknown error occurred on the server.');
         }
       })
       .catch(error => {
-        // This block catches any error from the fetch chain
-        console.error('Submission failed:', error);
-        statusContainer.innerHTML = `<div class="error"><h3>Submission Failed</h3><p>${error.message}</p></div>`;
+        // --- Handle ERROR response from Google Apps Script or network failure ---
+        console.error('Error submitting form:', error);
+        statusMessage.textContent = `An error occurred: ${error.message || 'Please try again later.'}`;
+        statusMessage.className = 'error';
+        // --- Debugging tip ---
+        console.log("DEBUG: Make sure the SCRIPT_URL is correct and the Apps Script is deployed for 'Anyone'.");
+      })
+      .finally(() => {
+        // --- Re-enable the submit button regardless of success or error ---
         submitButton.disabled = false;
         submitButton.textContent = 'Submit Entry';
       });
