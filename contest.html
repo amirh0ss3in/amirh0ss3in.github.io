@@ -10,125 +10,85 @@ permalink: /contest/
 
   <!-- The Form -->
   <form id="contest-form" name="contest-form">
+    <!-- ... (form fields are the same as before) ... -->
     <div class="form-group">
       <label for="name">Full Name</label>
       <input type="text" id="name" name="name" required>
     </div>
-
     <div class="form-group">
       <label for="email">Email Address</label>
       <input type="email" id="email" name="email" required>
     </div>
-
     <div class="form-group">
       <label for="answer">Your Short Answer (max 500 characters)</label>
       <textarea id="answer" name="answer" rows="6" maxlength="500" required></textarea>
     </div>
-
     <button type="submit" id="submit-button">Submit Entry</button>
   </form>
 
-  <!-- Success Message (hidden by default) -->
+  <!-- Success Message -->
   <div id="success-message" style="display:none; padding: 20px; background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; border-radius: 4px; margin-top: 20px;">
     <h3>Thank You!</h3>
-    <p>Your entry has been received successfully. We will be in touch if you are selected as the winner.</p>
+    <p>Your entry has been received successfully.</p>
   </div>
 
-  <!-- Error Message (hidden by default) -->
+  <!-- Error Message (Now with a placeholder for specific errors) -->
   <div id="error-message" style="display:none; padding: 20px; background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; border-radius: 4px; margin-top: 20px;">
-    <h3>Oops!</h3>
-    <p>Something went wrong. Please try submitting the form again. If the problem persists, please contact us directly.</p>
+    <h3>Oops! An Error Occurred.</h3>
+    <p id="error-text">Something went wrong. Please try again.</p>
   </div>
-
 </div>
 
-<!-- Basic styling to match the minimal theme -->
+<!-- ... (styling is the same as before) ... -->
 <style>
-  .form-group {
-    margin-bottom: 1.5rem;
-  }
-  label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: bold;
-  }
-  input[type="text"],
-  input[type="email"],
-  textarea {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: #f9f9f9;
-    color: #333;
-    font-size: 1rem;
-    box-sizing: border-box; /* Important for padding and width */
-  }
-  button {
-    display: inline-block;
-    padding: 0.75rem 1.5rem;
-    border: none;
-    background-color: #3498db; /* A nice default blue */
-    color: white;
-    font-size: 1rem;
-    font-weight: bold;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
-  }
-  button:hover {
-    background-color: #2980b9;
-  }
-  button:disabled {
-    background-color: #a9a9a9;
-    cursor: not-allowed;
-  }
+/* Same styles as before */
+.form-group{margin-bottom:1.5rem}label{display:block;margin-bottom:.5rem;font-weight:700}input[type=text],input[type=email],textarea{width:100%;padding:.75rem;border:1px solid #ccc;border-radius:4px;background-color:#f9f9f9;color:#333;font-size:1rem;box-sizing:border-box}button{display:inline-block;padding:.75rem 1.5rem;border:none;background-color:#3498db;color:#fff;font-size:1rem;font-weight:700;border-radius:4px;cursor:pointer;transition:background-color .2s ease-in-out}button:hover{background-color:#2980b9}button:disabled{background-color:#a9a9a9;cursor:not-allowed}
 </style>
 
+<!-- IMPROVED JAVASCRIPT WITH BETTER ERROR HANDLING -->
 <script>
   document.addEventListener("DOMContentLoaded", function() {
-    // --- 1. SET YOUR GOOGLE APPS SCRIPT URL HERE ---
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyivF7-3AYpAvWCQPNdEMDWRpVi-iwQodDSX5-GmLMFacKSGUUsaRO-axIYzABJe4yU/exec'; 
 
     const form = document.getElementById('contest-form');
     const submitButton = document.getElementById('submit-button');
     const successMessage = document.getElementById('success-message');
     const errorMessage = document.getElementById('error-message');
+    const errorText = document.getElementById('error-text');
 
     form.addEventListener('submit', function(e) {
-      e.preventDefault(); // Prevent the default form submission
-
-      // Disable button to prevent multiple submissions
+      e.preventDefault(); 
       submitButton.disabled = true;
       submitButton.textContent = 'Submitting...';
       errorMessage.style.display = 'none';
 
       const formData = new FormData(form);
-
-      fetch(SCRIPT_URL, {
-        method: 'POST',
-        body: formData
-      })
-      .then(response => response.json())
-      .then(data => {
-        if (data.result === 'success') {
-          // On success, hide the form and show the success message
-          form.style.display = 'none';
-          successMessage.style.display = 'block';
-        } else {
-          // On handled error (from the script), show the error message
-          throw new Error(data.error || 'An unknown error occurred.');
-        }
-      })
-      .catch(error => {
-        // On network error or script error, show the error message
-        console.error('Error!', error.message);
-        errorMessage.style.display = 'block';
-        
-        // Re-enable the button so the user can try again
-        submitButton.disabled = false;
-        submitButton.textContent = 'Submit Entry';
-      });
+      fetch(SCRIPT_URL, { method: 'POST', body: formData })
+        .then(response => {
+          // A 302 redirect is a strong indicator of a deployment permission error.
+          // Google's script will redirect to a login page if "Who has access" is not "Anyone".
+          if (response.redirected) {
+            throw new Error('Form submission was redirected. This usually means the Apps Script deployment permissions are not set to "Anyone".');
+          }
+          return response.json();
+        })
+        .then(data => {
+          if (data.result === 'success') {
+            form.style.display = 'none';
+            successMessage.style.display = 'block';
+          } else {
+            // Display the specific error message from the Apps Script
+            throw new Error(data.error || 'An unknown error occurred on the server.');
+          }
+        })
+        .catch(error => {
+          console.error('Submission Error!', error.message);
+          errorText.textContent = error.message; // Display the detailed error
+          errorMessage.style.display = 'block';
+          
+          submitButton.disabled = false;
+          submitButton.textContent = 'Submit Entry';
+        });
     });
   });
 </script>
