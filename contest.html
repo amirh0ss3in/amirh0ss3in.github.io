@@ -1,162 +1,134 @@
 ---
 layout: page
-title: Contest Entry
-description: "Enter our contest for a chance to win!"
+title: Contest Submission
+permalink: /contest/
 ---
 
-<style>
-  /* Custom styles for the form to match the Indigo theme */
-  .contest-form-container {
-    max-width: 600px;
-    margin: 2rem auto;
-    padding: 2rem;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    background-color: #fdfdfd;
-  }
+<div class="form-container">
+  <h2>Enter the Contest</h2>
+  <p>Submit your entry below. We will contact the winner via email.</p>
 
-  .form-group {
-    margin-bottom: 1.5rem;
-  }
-
-  .form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: bold;
-    color: #555;
-  }
-
-  .form-group input[type="text"],
-  .form-group input[type="email"],
-  .form-group textarea {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 1rem;
-    color: #333;
-    box-sizing: border-box; /* Important for padding and width */
-  }
-  
-  .form-group input:focus,
-  .form-group textarea:focus {
-      border-color: #3f51b5; /* Indigo theme accent color */
-      outline: none;
-  }
-
-  .form-group textarea {
-    min-height: 120px;
-    resize: vertical;
-  }
-  
-  .submit-btn {
-    display: inline-block;
-    background-color: #3f51b5; /* Indigo theme accent color */
-    color: white;
-    padding: 0.75rem 1.5rem;
-    border: none;
-    border-radius: 4px;
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
-    width: 100%;
-  }
-
-  .submit-btn:hover {
-    background-color: #303f9f;
-  }
-  
-  .submit-btn:disabled {
-    background-color: #9fa8da;
-    cursor: not-allowed;
-  }
-
-  .form-message {
-    padding: 1rem;
-    margin-top: 1rem;
-    border-radius: 4px;
-    text-align: center;
-    display: none; /* Hidden by default */
-  }
-
-  .form-message.success {
-    background-color: #e8f5e9;
-    color: #2e7d32;
-    border: 1px solid #a5d6a7;
-  }
-
-  .form-message.error {
-    background-color: #ffebee;
-    color: #c62828;
-    border: 1px solid #ef9a9a;
-  }
-</style>
-
-<div class="contest-form-container">
-  <h2>Submit Your Entry</h2>
-  <p>Fill out the form below to enter the contest. Good luck!</p>
-
-  <form id="contest-form">
+  <!-- The Form -->
+  <form id="contest-form" name="contest-form">
     <div class="form-group">
       <label for="name">Full Name</label>
       <input type="text" id="name" name="name" required>
     </div>
+
     <div class="form-group">
       <label for="email">Email Address</label>
       <input type="email" id="email" name="email" required>
     </div>
+
     <div class="form-group">
-      <label for="answer">Short Answer</label>
-      <textarea id="answer" name="answer" placeholder="Why should you win?" required></textarea>
+      <label for="answer">Your Short Answer (max 500 characters)</label>
+      <textarea id="answer" name="answer" rows="6" maxlength="500" required></textarea>
     </div>
-    <button type="submit" class="submit-btn" id="submit-button">Submit Entry</button>
+
+    <button type="submit" id="submit-button">Submit Entry</button>
   </form>
-  
-  <div id="form-message" class="form-message"></div>
+
+  <!-- Success Message (hidden by default) -->
+  <div id="success-message" style="display:none; padding: 20px; background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; border-radius: 4px; margin-top: 20px;">
+    <h3>Thank You!</h3>
+    <p>Your entry has been received successfully. We will be in touch if you are selected as the winner.</p>
+  </div>
+
+  <!-- Error Message (hidden by default) -->
+  <div id="error-message" style="display:none; padding: 20px; background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; border-radius: 4px; margin-top: 20px;">
+    <h3>Oops!</h3>
+    <p>Something went wrong. Please try submitting the form again. If the problem persists, please contact us directly.</p>
+  </div>
+
 </div>
 
+<!-- Basic styling to match the minimal theme -->
+<style>
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+  }
+  input[type="text"],
+  input[type="email"],
+  textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    color: #333;
+    font-size: 1rem;
+    box-sizing: border-box; /* Important for padding and width */
+  }
+  button {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    background-color: #3498db; /* A nice default blue */
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+  button:hover {
+    background-color: #2980b9;
+  }
+  button:disabled {
+    background-color: #a9a9a9;
+    cursor: not-allowed;
+  }
+</style>
 
 <script>
-  // This is the URL you copied from the Google Apps Script deployment
-  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyeg7mwUv5jkWdQBW_wKcRT_HK4FIIacllc3Ks6Ip5wUu7_T4nE-SZXF7WjtFgXy2oL/exec'; 
+  document.addEventListener("DOMContentLoaded", function() {
+    // --- 1. SET YOUR GOOGLE APPS SCRIPT URL HERE ---
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyivF7-3AYpAvWCQPNdEMDWRpVi-iwQodDSX5-GmLMFacKSGUUsaRO-axIYzABJe4yU/exec'; 
 
-  const form = document.getElementById('contest-form');
-  const submitButton = document.getElementById('submit-button');
-  const messageDiv = document.getElementById('form-message');
+    const form = document.getElementById('contest-form');
+    const submitButton = document.getElementById('submit-button');
+    const successMessage = document.getElementById('success-message');
+    const errorMessage = document.getElementById('error-message');
 
-  form.addEventListener('submit', function(e) {
-    e.preventDefault(); // Prevent the default form submission
+    form.addEventListener('submit', function(e) {
+      e.preventDefault(); // Prevent the default form submission
 
-    submitButton.disabled = true;
-    submitButton.textContent = 'Submitting...';
-    messageDiv.style.display = 'none'; // Hide previous messages
+      // Disable button to prevent multiple submissions
+      submitButton.disabled = true;
+      submitButton.textContent = 'Submitting...';
+      errorMessage.style.display = 'none';
 
-    fetch(SCRIPT_URL, {
-      method: 'POST',
-      body: new FormData(form)
-    })
-    .then(response => response.json())
-    .then(data => {
-      if (data.result === 'success') {
-        messageDiv.textContent = 'Thank you! Your entry has been submitted successfully.';
-        messageDiv.className = 'form-message success';
-        form.reset(); // Clear the form
-      } else {
-        // The error object might contain more details, but we'll show a generic message.
-        throw new Error(data.error || 'An unknown error occurred.');
-      }
-    })
-    .catch(error => {
-      console.error('Error!', error.message);
-      messageDiv.textContent = 'Oops! Something went wrong. Please try again later.';
-      messageDiv.className = 'form-message error';
-    })
-    .finally(() => {
-      // Re-enable the button and show the message
-      submitButton.disabled = false;
-      submitButton.textContent = 'Submit Entry';
-      messageDiv.style.display = 'block';
+      const formData = new FormData(form);
+
+      fetch(SCRIPT_URL, {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.result === 'success') {
+          // On success, hide the form and show the success message
+          form.style.display = 'none';
+          successMessage.style.display = 'block';
+        } else {
+          // On handled error (from the script), show the error message
+          throw new Error(data.error || 'An unknown error occurred.');
+        }
+      })
+      .catch(error => {
+        // On network error or script error, show the error message
+        console.error('Error!', error.message);
+        errorMessage.style.display = 'block';
+        
+        // Re-enable the button so the user can try again
+        submitButton.disabled = false;
+        submitButton.textContent = 'Submit Entry';
+      });
     });
   });
 </script>
