@@ -37,8 +37,18 @@ Our paper, *“Continuous Approximation of the Ising Hamiltonian: Exact Ground S
 
 If you'd like an intuitive overview, I created a **SoME4 explainer video** that walks through the core ideas behind this research:
 
-👉 **Watch here:**  
-https://youtu.be/U03AiaWJfb8?si=qLm4IlUtWAHp2jDC
+**Watch here:**  
+<div style="text-align:center;">
+  <iframe width="560" height="315" 
+          src="https://www.youtube.com/embed/U03AiaWJfb8" 
+          title="How a Leap of Faith Solved an Impossible Problem | #SoME4" 
+          frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allowfullscreen>
+  </iframe>
+  <p><em>How a Leap of Faith Solved an Impossible Problem | #SoME4</em></p>
+</div>
+
 
 You can also explore more content on my YouTube channel, where I share physics explainers, research stories, and animations.
 
