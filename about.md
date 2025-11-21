@@ -57,7 +57,7 @@ My technical background includes:
 
 ## Perspective
 
-Whether it’s quantum systems, machine learning, or complex dynamical models, I enjoy building tools and ideas that reveal deeper structure behind complex systems. I value clarity, adaptability, and curiosity — and I welcome meaningful collaboration.
+Whether it’s quantum systems, machine learning, or complex dynamical models, I enjoy building tools and ideas that reveal deeper structure behind complex systems. I value clarity, adaptability, and curiosity, and I welcome meaningful collaboration.
 
 Feel free to explore my work or reach out anytime.
 
