@@ -44,7 +44,7 @@ You can also explore more content on my YouTube channel, where I share physics e
 
 ## Skills & Approach
 
-I enjoy approaching problems from multiple angles — physics intuition, mathematical structure, and computational efficiency.  
+I enjoy approaching problems from multiple angles: physics intuition, mathematical structure, and computational efficiency.  
 My technical background includes:
 
 **Programming:** Python, C, C++, Fortran, MATLAB, Mathematica, Maple  
