@@ -7,7 +7,7 @@ layout: page
 # About Me
 
 I'm **Amirhossein Rezaei**, a physicist and currently a **Physics of Data (M.Sc.)** student at the **University of Padova**.  
-People often describe me as an “adjustable wrench” — I gravitate toward whatever problem needs solving, especially when physics and computation intersect.
+People often describe me as an “adjustable wrench”; I gravitate toward whatever problem needs solving, especially when physics and computation intersect.
 
 ## Academic & Research Path
 
