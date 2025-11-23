@@ -3,7 +3,7 @@ title: درباره من
 layout: page
 lang: fa
 ---
-![تصویر پروفایل]({% if site.external-image %}{{ site.picture }}{% else %}{{ site.url }}/{{ site.picture }}{% endif %})
+![امیرحسین رضایی - فیزیک‌دان و دانشجوی کارشناسی ارشد فیزیک داده در دانشگاه پادوا]({% if site.external-image %}{{ site.picture }}{% else %}{{ site.url }}/{{ site.picture }}{% endif %})
 
 # درباره من
 

@@ -3,13 +3,13 @@ layout: page
 ---
 
 {% if page.image and page.headerImage %}
-    <img class="title-image" src="{{ page.image }}" alt="{{ page.title }}">
+    <img class="title-image" src="{{ page.image }}" alt="{% if page.image_alt %}{{ page.image_alt }}{% else %}{{ page.title }} - {{ site.title }}{% endif %}">
 {% endif %}
 
 <h1 class="title">{{ page.title }}</h1>
 
 <span class="date">
-    <time datetime="{{ page.date | date:"%d-%m-%Y" }}">{{ page.date | date: "%A. %B %d, %Y" }}</time>
+    <time datetime="{{ page.date | date_to_xmlschema }}" lang="{{ page.lang | default: 'en' }}">{{ page.date | date: "%A. %B %d, %Y" }}</time>
     {% if site.read-time %} - {% include read-time.html %}{% endif %}
 </span>
 

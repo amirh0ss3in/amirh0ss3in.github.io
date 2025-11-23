@@ -3,7 +3,7 @@ title: About
 layout: page
 lang: en
 ---
-![Profile Image]({% if site.external-image %}{{ site.picture }}{% else %}{{ site.url }}/{{ site.picture }}{% endif %})
+![Amirhossein Rezaei - Physicist and M.Sc. student in Physics of Data at University of Padova]({% if site.external-image %}{{ site.picture }}{% else %}{{ site.url }}/{{ site.picture }}{% endif %})
 
 # About Me
 

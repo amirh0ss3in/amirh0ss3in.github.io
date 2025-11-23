@@ -1,2 +1,8 @@
 User-agent: *
-Disallow:
+Allow: /
+Disallow: /vendor/
+Disallow: /Gemfile
+Disallow: /Gemfile.lock
+
+# Sitemap location
+Sitemap: https://amirh0ss3in.github.io/sitemap.xml

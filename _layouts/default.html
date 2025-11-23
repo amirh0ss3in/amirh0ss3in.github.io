@@ -11,8 +11,11 @@ layout: compress
     {% endif %}
 
     <meta charset="utf-8">
-    <meta name=viewport content="width=device-width, initial-scale=1">
-    <meta name=author content="{{ site.title }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="author" content="{{ site.title }}">
+    <meta name="application-name" content="{{ site.title }}">
+    {% if site.keywords %}<meta name="keywords" content="{{ site.keywords }}">{% endif %}
+    <meta name="language" content="{{ current_lang }}">
 
     {% seo %}
 
@@ -37,6 +40,121 @@ layout: compress
     <link rel="alternate" hreflang="fa" href="{{ base_url }}{{ fa_url }}" />
     <link rel="alternate" hreflang="x-default" href="{{ base_url }}{{ en_url }}" />
     <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ site.url }}{{ "/feed.xml" }}" />
+
+    {% comment %} Preconnect to external domains for performance {% endcomment %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://kit.fontawesome.com">
+    <link rel="preconnect" href="https://www.youtube.com">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://kit.fontawesome.com">
+    <link rel="dns-prefetch" href="https://www.youtube.com">
+
+    {% comment %} Theme color for mobile browsers {% endcomment %}
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)">
+
+    {% comment %} Structured Data (JSON-LD) for Person Schema {% endcomment %}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "{{ site.title }}",
+      "url": "{{ site.url }}",
+      "image": "{{ site.url }}/{{ site.picture }}",
+      "jobTitle": "{{ site.bio }}",
+      "description": "{{ site.description }}"{% if site.email %},
+      "email": "{{ site.email }}"{% endif %}{% if site.linkedin or site.github or site.twitter %},
+      "sameAs": [
+        {% if site.linkedin %}"https://www.linkedin.com/in/{{ site.linkedin }}"{% endif %}
+        {% if site.github %}{% if site.linkedin %}, {% endif %}"https://github.com/{{ site.github }}"{% endif %}
+        {% if site.twitter %}{% if site.linkedin or site.github %}, {% endif %}"https://twitter.com/{{ site.twitter }}"{% endif %}
+      ]{% endif %},
+      "knowsAbout": [
+        "Physics",
+        "Machine Learning",
+        "Deep Learning",
+        "Quantum Information",
+        "Computational Physics",
+        "Data Science",
+        "Python"
+      ],
+      "alumniOf": {
+        "@type": "EducationalOrganization",
+        "name": "University of Padova"
+      }
+    }
+    </script>
+
+    {% comment %} Structured Data for WebSite {% endcomment %}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "{{ site.title }}",
+      "url": "{{ site.url }}",
+      "description": "{{ site.description }}",
+      "inLanguage": ["en", "fa"],
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "{{ site.url }}/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+
+    {% if page.layout == "post" %}
+    {% comment %} Structured Data for BlogPosting {% endcomment %}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "{{ page.title }}",
+      "description": "{{ page.excerpt | default: site.description | strip_html | truncate: 160 }}",
+      "image": "{% if page.image %}{{ page.image }}{% else %}{{ site.url }}/{{ site.picture }}{% endif %}",
+      "datePublished": "{{ page.date | date_to_xmlschema }}",
+      {% if page.date %}"dateModified": "{{ page.last_modified_at | default: page.date | date_to_xmlschema }}",{% endif %}
+      "author": {
+        "@type": "Person",
+        "name": "{{ site.title }}",
+        "url": "{{ site.url }}"
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "{{ site.title }}",
+        "url": "{{ site.url }}"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "{{ site.url }}{{ page.url }}"
+      },
+      "inLanguage": "{{ current_lang }}"
+    }
+    </script>
+    {% endif %}
+
+    {% comment %} Breadcrumbs Structured Data {% endcomment %}
+    {% unless page.url == '/' or page.url == '/fa/' %}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "{{ site.url }}{% if current_lang == 'fa' %}/fa{% endif %}/"
+        }
+        {% if page.title %},{
+          "@type": "ListItem",
+          "position": 2,
+          "name": "{{ page.title }}",
+          "item": "{{ site.url }}{{ page.url }}"
+        }{% endif %}
+      ]
+    }
+    </script>
+    {% endunless %}
 
     <script src="https://kit.fontawesome.com/d9b09040a7.js" crossorigin="anonymous"></script>
 
