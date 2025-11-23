@@ -2,7 +2,8 @@
 layout: compress
 ---
 <!DOCTYPE html>
-<html lang="en">
+{% assign current_lang = page.lang | default: 'en' %}
+<html lang="{{ current_lang }}" dir="{% if current_lang == 'fa' %}rtl{% else %}ltr{% endif %}">
 <head>
 
     {% if site.analytics-google %}
@@ -17,7 +18,24 @@ layout: compress
 
     {% include favicon.html %}
 
-    <link rel="canonical" href="{{ site.url }}{{ page.url | replace:'index.html','' }}">
+    {% comment %} Hreflang tags for SEO {% endcomment %}
+    {% assign base_url = site.url %}
+    {% assign current_url = page.url | replace:'index.html','' %}
+    {% assign en_url = current_url | replace: '/fa', '' | replace: '//', '/' %}
+    {% if en_url == '' %}{% assign en_url = '/' %}{% endif %}
+    {% assign fa_url = current_url %}
+    {% unless fa_url contains '/fa/' %}
+        {% if fa_url == '/' %}
+            {% assign fa_url = '/fa/' %}
+        {% else %}
+            {% assign fa_url = '/fa' | append: fa_url %}
+        {% endif %}
+    {% endunless %}
+    
+    <link rel="canonical" href="{{ base_url }}{{ en_url }}">
+    <link rel="alternate" hreflang="en" href="{{ base_url }}{{ en_url }}" />
+    <link rel="alternate" hreflang="fa" href="{{ base_url }}{{ fa_url }}" />
+    <link rel="alternate" hreflang="x-default" href="{{ base_url }}{{ en_url }}" />
     <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ site.url }}{{ "/feed.xml" }}" />
 
     <script src="https://kit.fontawesome.com/d9b09040a7.js" crossorigin="anonymous"></script>
@@ -38,10 +56,79 @@ layout: compress
     {% endif %}
 
     {{ scss_sheet | scssify }}
+    
+    {% if current_lang == 'fa' %}
+    /* RTL support for Persian */
+    html[dir="rtl"] body {
+        direction: rtl;
+        text-align: right;
+    }
+    html[dir="rtl"] .nav {
+        right: auto;
+        left: 0;
+    }
+    html[dir="rtl"] .nav ul, 
+    html[dir="rtl"] .nav-home ul {
+        direction: rtl;
+        text-align: right;
+    }
+    html[dir="rtl"] blockquote {
+        padding-left: 0;
+        padding-right: 15px;
+        border-left: none;
+        border-right: 3px solid #eee;
+    }
+    html[dir="rtl"] .post > .blog-navigation .next {
+        text-align: left;
+        float: right;
+    }
+    html[dir="rtl"] .post > .blog-navigation .prev {
+        text-align: right;
+        float: left;
+    }
+    .language-switcher {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        z-index: 1000;
+    }
+    .lang-link {
+        padding: 8px 16px;
+        background: rgba(0, 0, 0, 0.1);
+        border-radius: 4px;
+        text-decoration: none;
+        font-size: 14px;
+        transition: background 0.3s;
+        display: inline-block;
+    }
+    .lang-link:hover {
+        background: rgba(0, 0, 0, 0.2);
+    }
+    {% else %}
+    .language-switcher {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+    }
+    .lang-link {
+        padding: 8px 16px;
+        background: rgba(0, 0, 0, 0.1);
+        border-radius: 4px;
+        text-decoration: none;
+        font-size: 14px;
+        transition: background 0.3s;
+        display: inline-block;
+    }
+    .lang-link:hover {
+        background: rgba(0, 0, 0, 0.2);
+    }
+    {% endif %}
     </style>
 
 </head>
 <body>
+    {% include language-switcher.html %}
     <div class="wrapper-{% if site.width == "normal" %}normal{% elsif site.width == "large" %}large{% endif %}">
         {% if page.layout == "post" %}
             <div class="post">

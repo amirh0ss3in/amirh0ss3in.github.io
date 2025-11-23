@@ -1,0 +1,28 @@
+en:
+  nav:
+    home: "Home"
+    blog: "Blog"
+    projects: "Projects"
+    about: "About"
+    contest: "Contest"
+    resume: "Résumé"
+  bio: "MSc. in Physics"
+  title: "Amirhossein Rezaei"
+  description: "Amirhossein Rezaei – Physicist and M.Sc. student in Physics of Data at the University of Padova. Expertise in Deep Learning, Machine Learning, Image Processing, Artificial Intelligence, Python, and Computational Physics. Research spans high-energy physics, quantum information, Ising machines, and complex systems, with publications in Physical Review D, Physical Review E, and Nuclear Physics B. Creator of educational physics content and research explainers on YouTube."
+  language: "English"
+  switch_language: "فارسی"
+
+fa:
+  nav:
+    home: "خانه"
+    blog: "وبلاگ"
+    projects: "پروژه‌ها"
+    about: "درباره من"
+    contest: "مسابقه"
+    resume: "رزومه"
+  bio: "کارشناسی ارشد فیزیک"
+  title: "امیرحسین رضایی"
+  description: "امیرحسین رضایی – فیزیک‌دان و دانشجوی کارشناسی ارشد فیزیک داده در دانشگاه پادوا. تخصص در یادگیری عمیق، یادگیری ماشین، پردازش تصویر، هوش مصنوعی، پایتون و فیزیک محاسباتی. تحقیقات در زمینه فیزیک انرژی بالا، اطلاعات کوانتومی، ماشین‌های ایزینگ و سیستم‌های پیچیده، با انتشارات در Physical Review D، Physical Review E و Nuclear Physics B. خالق محتوای آموزشی فیزیک و توضیح‌دهنده تحقیقات در یوتیوب."
+  language: "فارسی"
+  switch_language: "English"
+

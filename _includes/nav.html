@@ -1,40 +1,46 @@
-<nav class="{% if page.title == "Home" %}nav-home{% else %}nav{% endif %}">
+{% assign current_lang = page.lang | default: 'en' %}
+{% assign t = site.data.translations[current_lang] %}
+<nav class="{% if page.title == "Home" or page.title == "خانه" %}nav-home{% else %}nav{% endif %}">
     <ul class="list">
-        {% if page.title != "Home" %}
+        {% assign home_title = t.nav.home %}
+        {% if page.title != "Home" and page.title != "خانه" %}
             <li class="item">
-                <a class="link" href="{{ site.url }}/">Home</a>
+                <a class="link" href="{% if current_lang == 'fa' %}{{ site.url }}/fa/{% else %}{{ site.url }}/{% endif %}">{{ home_title }}</a>
             </li>
         {% endif %}
 
         {% if site.blog == true %}
-            {% if page.title != "Blog" %}
+            {% assign blog_title = t.nav.blog %}
+            {% if page.title != "Blog" and page.title != "وبلاگ" %}
                 <li class="item">
-                    <a class="link" href="{{ site.url }}/blog">Blog</a>
+                    <a class="link" href="{% if current_lang == 'fa' %}{{ site.url }}/fa/blog{% else %}{{ site.url }}/blog{% endif %}">{{ blog_title }}</a>
                 </li>
             {% endif %}
         {% endif %}
 
         {% if site.projects == true %}
-            {% if page.title != "Projects" %}
+            {% assign projects_title = t.nav.projects %}
+            {% if page.title != "Projects" and page.title != "پروژه‌ها" %}
                 <li class="item">
-                    <a class="link" href="{{ site.url }}/projects">Projects</a>
+                    <a class="link" href="{% if current_lang == 'fa' %}{{ site.url }}/fa/projects{% else %}{{ site.url }}/projects{% endif %}">{{ projects_title }}</a>
                 </li>
             {% endif %}
         {% endif %}
 
         {% if site.about == true %}
-            {% if page.title != "About" %}
+            {% assign about_title = t.nav.about %}
+            {% if page.title != "About" and page.title != "درباره من" %}
                 <li class="item">
-                    <a class="link" href="{{ site.url }}/about">About</a>
+                    <a class="link" href="{% if current_lang == 'fa' %}{{ site.url }}/fa/about{% else %}{{ site.url }}/about{% endif %}">{{ about_title }}</a>
                 </li>
             {% endif %}
         {% endif %}
         <li class="item">
-            <a class="link" href="{{ site.url }}/contest">Contest</a>
+            <a class="link" href="{% if current_lang == 'fa' %}{{ site.url }}/fa/contest{% else %}{{ site.url }}/contest{% endif %}">{{ t.nav.contest }}</a>
         </li>
         {% if site.resume == true %}
             <li class="item">
-                <a class="link" href="{% if site.resume-external %}{{ site.resume-url }}{% else %}{{ site.url }}/{{ site.resume-url }}{% endif %}">Résumé</a>
+                <a class="link" href="{% if site.resume-external %}{{ site.resume-url }}{% else %}{{ site.url }}/{{ site.resume-url }}{% endif %}">{{ t.nav.resume }}</a>
             </li>
         {% endif %}
     </ul>

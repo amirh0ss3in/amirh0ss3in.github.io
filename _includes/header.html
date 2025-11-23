@@ -1,23 +1,25 @@
-{% if page.title == "Home"
-   or page.title == "Blog"
-   or page.title == "Projects"
+{% assign current_lang = page.lang | default: 'en' %}
+{% assign t = site.data.translations[current_lang] %}
+{% if page.title == "Home" or page.title == "خانه"
+   or page.title == "Blog" or page.title == "وبلاگ"
+   or page.title == "Projects" or page.title == "پروژه‌ها"
    or page.title == "Tags"
 %}{% assign showHeader = true %}{% endif %}
 
 {% if showHeader == true %}
     <header class="header-home {% if site.animation %}animated{% endif %}">
         {% if site.about %}
-            <a class="link" href="{{ site.url }}/about">
-                <img class="selfie" alt="{{ site.title }}" src="{% if site.external-image %}{{ site.picture }}{% else %}{{ site.url }}/{{ site.picture }}{% endif %}" />
+            <a class="link" href="{% if current_lang == 'fa' %}{{ site.url }}/fa/about{% else %}{{ site.url }}/about{% endif %}">
+                <img class="selfie" alt="{{ t.title }}" src="{% if site.external-image %}{{ site.picture }}{% else %}{{ site.url }}/{{ site.picture }}{% endif %}" />
             </a>
         {% else %}
             <span class="link">
-                <img class="selfie" alt="{{ site.title }}" src="{% if site.external-image %}{{ site.picture }}{% else %}{{ site.url }}/{{ site.picture }}{% endif %}" />
+                <img class="selfie" alt="{{ t.title }}" src="{% if site.external-image %}{{ site.picture }}{% else %}{{ site.url }}/{{ site.picture }}{% endif %}" />
             </span>
         {% endif %}
 
-        <h1 class="title">{{ site.title }}</h1>
-        <h2 class="description">{{ site.bio }}</h2>
+        <h1 class="title">{{ t.title }}</h1>
+        <h2 class="description">{{ t.bio }}</h2>
 
         {% include social-links.html %}
     </header>

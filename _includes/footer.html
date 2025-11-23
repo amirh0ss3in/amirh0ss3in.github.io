@@ -1,5 +1,7 @@
+{% assign current_lang = page.lang | default: 'en' %}
+{% assign t = site.data.translations[current_lang] %}
 <footer class="footer-main">
-    {{ site.title }} © {{ site.time | date: '%Y' }}
+    {{ t.title }} © {{ site.time | date: '%Y' }}
 
     <a class="link" href="{{ site.url }}/feed.xml" target="_blank">
         <i class="fa-solid fa-rss"></i>
