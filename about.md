@@ -25,7 +25,7 @@ These experiences introduced me to numerical analysis, simulation techniques, an
 
 ### Machine Learning & Complex Systems
 Later, I led a project using **1D-CNNs** with **Bayesian hyperparameter optimization** and **Neural Architecture Search** for structural collapse prediction in earthquake time-series.  
-The work is currently under review, with a preprint available.
+The work is published in Ocean Engineering.
 
 ### Quantum Information & Ising Machines
 Most recently, in the **Quantum Information and Computation Group at SBU**, I worked on fully connected Ising Hamiltonians and their applications to optimization problems such as:
