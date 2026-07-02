@@ -35,6 +35,15 @@
                 </li>
             {% endif %}
         {% endif %}
+
+        {% if site.presentations == true %}
+            {% assign presentations_title = t.nav.presentations %}
+            {% if page.title != "Presentations" and page.title != "ارائه‌ها" %}
+                <li class="item">
+                    <a class="link" href="{% if current_lang == 'fa' %}{{ site.url }}/fa/presentations{% else %}{{ site.url }}/presentations{% endif %}">{{ presentations_title }}</a>
+                </li>
+            {% endif %}
+        {% endif %}
         <li class="item">
             <a class="link" href="{{ site.url }}/grand-explainer.html">{{ t.nav.contest }}</a>
         </li>
